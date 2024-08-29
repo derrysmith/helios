@@ -18,6 +18,11 @@ public abstract class AggregateRoot<TAggRootKey> : DomainEntity<TAggRootKey>, IA
 	public void RemoveDomainEvents()
 		=> _events.Clear();
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="domainEvent"></param>
+	/// <typeparam name="T"></typeparam>
 	protected virtual void RaiseEvent<T>(T domainEvent)
 		where T : IDomainEvent
 	{
@@ -25,6 +30,11 @@ public abstract class AggregateRoot<TAggRootKey> : DomainEntity<TAggRootKey>, IA
 		this.StashEvent(domainEvent);
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="domainEvent"></param>
+	/// <typeparam name="T"></typeparam>
 	protected virtual void ApplyEvent<T>(T domainEvent)
 		where T : IDomainEvent
 	{
@@ -32,6 +42,11 @@ public abstract class AggregateRoot<TAggRootKey> : DomainEntity<TAggRootKey>, IA
 			applier.Apply(domainEvent);
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="domainEvent"></param>
+	/// <typeparam name="T"></typeparam>
 	protected virtual void StashEvent<T>(T domainEvent)
 		where T : IDomainEvent
 	{
